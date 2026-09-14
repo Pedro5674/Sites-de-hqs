@@ -1,0 +1,44 @@
+/* TEMA FOGO (Labaredas e Brasas) */
+body[data-theme="fogo"] #theme-overlay {
+    background: radial-gradient(circle at center, rgba(255, 69, 0, 0.15) 0%, rgba(10, 5, 0, 0.85) 100%);
+}
+body[data-theme="fogo"] h1, body[data-theme="fogo"] h2 {
+    color: #ff4500;
+    text-shadow: 0 0 15px rgba(255, 69, 0, 0.6), 0 0 25px rgba(255, 140, 0, 0.4);
+}
+
+/* TEMA GELO (Geada e Cristal) */
+body[data-theme="gelo"] #theme-overlay {
+    background: radial-gradient(circle at center, rgba(0, 191, 255, 0.15) 0%, rgba(2, 15, 25, 0.85) 100%);
+}
+body[data-theme="gelo"] h1, body[data-theme="gelo"] h2 {
+    color: #00ffff;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.6), 0 0 25px rgba(135, 206, 250, 0.4);
+}
+
+/* TEMA RAIO (Tempestade Elétrica) */
+body[data-theme="raio"] #theme-overlay {
+    background: radial-gradient(circle at center, rgba(138, 43, 226, 0.15) 0%, rgba(15, 5, 25, 0.85) 100%);
+}
+body[data-theme="raio"] h1, body[data-theme="raio"] h2 {
+    color: #e066ff;
+    text-shadow: 0 0 15px rgba(224, 102, 255, 0.7), 0 0 30px rgba(138, 43, 226, 0.5);
+}
+
+/* TEMA VENENO (Névoa Tóxica) */
+body[data-theme="veneno"] #theme-overlay {
+    background: radial-gradient(circle at center, rgba(50, 205, 50, 0.15) 0%, rgba(5, 20, 5, 0.85) 100%);
+}
+body[data-theme="veneno"] h1, body[data-theme="veneno"] h2 {
+    color: #32cd32;
+    text-shadow: 0 0 15px rgba(50, 205, 50, 0.6);
+}
+
+/* TEMA SOMBRA / ABISMO */
+body[data-theme="sombra"] #theme-overlay {
+    background: radial-gradient(circle at center, rgba(40, 0, 60, 0.2) 0%, rgba(0, 0, 0, 0.95) 100%);
+}
+body[data-theme="sombra"] h1, body[data-theme="sombra"] h2 {
+    color: #9932cc;
+    text-shadow: 0 0 15px rgba(153, 50, 204, 0.8);
+}
