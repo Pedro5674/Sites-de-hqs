@@ -1,53 +1,97 @@
 <div align="center">
 
-  <!-- BANNER PRINCIPAL: SMAUG, O TERRIBLE (O HOBBIT) -->
-  <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1200&auto=format&fit=crop" alt="Smaug - O Hobbit" width="100%" style="border-radius: 12px; border: 2px solid #ff4500; box-shadow: 0 0 25px #ff4500;">
+# 🐉 SANTUÁRIO & BESTIÁRIO DOS 200 DRAGÕES 🐉
+### O Tomo Supremo das Lendas Ancestrais de Pyrrhia, Pantala e Além
 
-  <br><br>
+<p align="center">
+  <a href="#sobre-o-grimoire">
+    <img src="https://img.shields.io/badge/📖_Grimoire-1a0000?style=for-the-badge&logoColor=gold" alt="Sobre">
+  </a>
+  <a href="#elementos--bordas-tematicas">
+    <img src="https://img.shields.io/badge/🔥_Elementos-1a0000?style=for-the-badge&logoColor=gold" alt="Elementos">
+  </a>
+  <a href="#soberanos-em-destaque">
+    <img src="https://img.shields.io/badge/👑_Soberanos-1a0000?style=for-the-badge&logoColor=gold" alt="Soberanos">
+  </a>
+  <a href="#recursos--tecnologias">
+    <img src="https://img.shields.io/badge/⚔️_Recursos-1a0000?style=for-the-badge&logoColor=gold" alt="Recursos">
+  </a>
+</p>
 
-  <!-- SEPARADOR ORNAMENTADO EM FOGO -->
-  <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab0100-a447-11eb-8408-b5603a1c32d2.gif" width="100%">
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Concluído-brightgreen?style=flat-square">
+  <img src="https://img.shields.io/badge/Dragões_Catalogados-200_Criaturas-orange?style=flat-square">
+  <img src="https://img.shields.io/badge/Compatibilidade-GitHub_Pages-blue?style=flat-square">
+</p>
 
-  <br><br>
+</div>
 
-  <!-- GALERIA 1: SOBERANOS DAS CHAMAS E OSSOS ANCESTRAIS -->
-  <table border="0" style="border-collapse: collapse; width: 100%;">
-    <tr>
-      <td width="50%" align="center" style="padding: 10px;">
-        <img src="https://images.unsplash.com/photo-1514539079130-25950c84af65?q=80&w=600&auto=format&fit=crop" width="100%" style="border-radius: 12px; border: 2px solid #888888; box-shadow: 0 0 15px rgba(255,255,255,0.2);" alt="Dragão de Ossos e Necromancia">
-      </td>
-      <td width="50%" align="center" style="padding: 10px;">
-        <img src="https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=600&auto=format&fit=crop" width="100%" style="border-radius: 12px; border: 2px solid #8a2be2; box-shadow: 0 0 20px #8a2be2;" alt="Dragão Abissal da Noite">
-      </td>
-    </tr>
-  </table>
+<h2 id="sobre-o-grimoire">📜 SOBRE O GRIMOIRE</h2>
 
-  <br>
+Nas profundezas deste repositório reside a compilação arcana dos **200 Dragões Lendários**. Um catálogo interativo forjado para catalogar, preservar e expor a história completa de cada soberano dos céus — revelando sua **Origem**, sua **Trajetória (Meio)** e seu **Destino Final (Fim)**.
 
-  <!-- GALERIA 2: IMPÉRIOS GÉLIDOS E REINOS MARÍTIMOS -->
-  <table border="0" style="border-collapse: collapse; width: 100%;">
-    <tr>
-      <td width="33%" align="center" style="padding: 8px;">
-        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=400&auto=format&fit=crop" width="100%" style="border-radius: 10px; border: 2px solid #00dfff; box-shadow: 0 0 15px #00dfff;" alt="Dragão do Gelo Eterno">
-      </td>
-      <td width="33%" align="center" style="padding: 8px;">
-        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=400&auto=format&fit=crop" width="100%" style="border-radius: 10px; border: 2px solid #00ffaa; box-shadow: 0 0 15px #00ffaa;" alt="Dragão Guardião dos Mares">
-      </td>
-      <td width="33%" align="center" style="padding: 8px;">
-        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=400&auto=format&fit=crop" width="100%" style="border-radius: 10px; border: 2px solid #32cd32; box-shadow: 0 0 15px #32cd32;" alt="Dragão Ancestral das Folhas">
-      </td>
-    </tr>
-  </table>
+Desde as chamas devastadoras de **Smaug, o Terrível** nas profundezas da Montanha Solitária, até as linhagens ancestrais das tribos de *Asas de Fogo*, cada criatura foi esculpida com identidades elementares e mecânicas visuais únicas.
 
-  <br><br>
+<h2 id="elementos--bordas-tematicas">🔥 ELEMENTOS & BORDAS TEMÁTICAS</h2>
 
-  <!-- BANNER DE ENERGIAS ARCANAS E FINALIZAÇÃO DARK -->
-  <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200&auto=format&fit=crop" alt="Dragão Guardião Abissal" width="100%" style="border-radius: 12px; border: 2px solid #ffb700; box-shadow: 0 0 30px #ffb700;">
+Cada dragão possui um vínculo elemental refletido diretamente na interface por meio de auras e animações vivas:
 
-  <br><br>
+* **🔥 Fogo & Céu:** Chamas carmesim pulsantes que envolvem o card em calor e luz inextinguível.
+* **💀 Ossos & Necromancia:** Auras sombrias, bordas góticas e estética de mortos-vivos e cinzas.
+* **❄️ Gelo & Neve:** Brilho congelado cristalino com partículas subsensoriais de geada.
+* **🌑 Noite & Sombra:** Magia abissal em tons de violeta e sombras que ocultam o destino.
+* **🌊 Mar & Água:** Luminosidade bioluminescente vinda das profundezas oceânicas.
+* **🌿 Folha & Natureza:** Energia esmeralda ligada à flora carnívora e ao poder da *Foliafala*.
 
-  <!-- DIVISOR INFERIOR -->
-  <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab0100-a447-11eb-8408-b5603a1c32d2.gif" width="100%">
+<h2 id="soberanos-em-destaque">👑 SOBERANOS EM DESTAQUE</h2>
+
+<details>
+<summary><b>🔥 Smaug, o Terrível (O Hobbit)</b></summary>
+<br>
+
+* **Origem:** Nascido nos erimos do Norte, atraído pelas imensas riquezas acumuladas pelos anões sob a Montanha Solitária.
+* **Meio:** Tomou o Reino sob a Montanha, expulsando os anões e adormecendo sobre um leito de ouro e jóias por séculos.
+* **Fim:** Derrotado por Bard, o Arqueiro, na cidade de Lago, após sua fúria ser despertada pela companhia de Thorin Escudo de Carvalho.
+</details>
+
+<details>
+<summary><b>🌑 Misterioso / Darkstalker (Asas de Fogo)</b></summary>
+<br>
+
+* **Origem:** Híbrido ancestral de Asa da Noite e Asa do Gelo, nascido sob três luas cheias com dons raros de profecia e magia de anima.
+* **Meio:** Usou seu poder imenso para tentar moldar o destino do continente, mergulhando em sombras e paranoia.
+* **Fim:** Adormecido por um feitiço de sua amada Clearsight e reencarnado séculos depois sem memórias de suas atrocidades.
+</details>
+
+<details>
+<summary><b>💀 Maldoror o Ossuário (Necromancia)</b></summary>
+<br>
+
+* **Origem:** Erguido das catacumbas ancestrais através de feitiçaria proibida e restos mortais de dragões esquecidos.
+* **Meio:** Guardou os cemitérios de Pyrrhia, devorando a alma de qualquer intruso que ousasse profanar o solo sagrado.
+* **Fim:** Selado eternamente nas profundezas rochosas por uma coalizão de feiticeiros.
+</details>
+
+<h2 id="recursos--tecnologias">⚔️ RECURSOS & TECNOLOGIAS</h2>
+
+* **⚡ Motor de Partículas Nativo:** Sistema de brasas e cinzas flutuantes gerado em tempo real via JavaScript Canvas.
+* **📚 Compêndio Dinâmico:** Algoritmo expansível capaz de gerenciar e filtrar 200 registros sem perda de desempenho.
+* **🔍 Busca e Filtragem Avançada:** Consulta instantânea por nome, tribo, elemento e habilidades especiais.
+* **📱 Interface Responsiva & Dark Fantasy:** Tipografia clássica e design otimizado para qualquer resolução.
+* **🚀 Zero Dependências Externas:** Feito em HTML5, CSS3 Pure e Vanilla JS, garantindo 100% de estabilidade no **GitHub Pages**.
+
+<br>
+
+<div align="center">
+
+<a href="#-santuário--bestiário-dos-200-dragões-">
+  <img src="https://img.shields.io/badge/⬆️_Voltar_ao_Topo-1a0000?style=for-the-badge&logoColor=gold" alt="Voltar ao Topo">
+</a>
+
+<br><br>
+
+Forjado com Magia & Código Avançado.  
+**Santuário dos Dragões © 2026**
 
 </div>
 https://pedro5674.github.io/Sites-de-hqs/
