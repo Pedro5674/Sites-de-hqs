@@ -3,58 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Santuário e Bestiário dos 200 Dragões</title>
+    <title>Grimório das Sombras - O Santuário dos Dragões</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=MedievalSharp&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <canvas id="fire-particles"></canvas>
+    <!-- CANVASES DE ANIMAÇÕES EXTREMAS (SANGUE, FOGO & NÉVOA REATIVOS) -->
+    <canvas id="blood-canvas"></canvas>
+    <canvas id="fire-canvas"></canvas>
 
-    <header class="main-header">
-        <div class="header-overlay">
-            <h1 class="glowing-title">🐉 SANTUÁRIO DOS 200 DRAGÕES 🐉</h1>
-            <p class="subtitle">O Tomo Supremo de Pyrrhia, Pantala e Lendas Mitológicas</p>
+    <!-- SOBREPOSIÇÃO DE VINHETA E TEXTURA MEDIEVAL -->
+    <div class="vignette-overlay"></div>
+    <div class="ancient-texture"></div>
+
+    <header class="gothic-header">
+        <div class="header-content">
+            <h1 class="blood-title">🐉 SANTUÁRIO DOS 200 DRAGÕES 🐉</h1>
+            <p class="gothic-subtitle">⚔️ O Compêndio Necromântico de Lendas, Sangue e Ruínas ⚔️</p>
         </div>
     </header>
 
-    <main class="container">
+    <main class="main-container">
         
-        <section class="controls-section">
-            <div class="search-box">
-                <input type="text" id="search-input" placeholder="🔍 Buscar por nome, elemento, origem ou habilidade...">
+        <section class="control-panel">
+            <div class="search-bar">
+                <i class="fa-solid fa-skull search-icon"></i>
+                <input type="text" id="search-input" placeholder="Consultar o compêndio por nome, reino, maldição ou poder...">
             </div>
 
-            <div class="filter-group">
-                <button class="filter-btn active" data-type="all">Todos os Dragões</button>
-                <button class="filter-btn" data-type="fogo">🔥 Fogo / Céu</button>
-                <button class="filter-btn" data-type="ossos">💀 Ossos / Necro</button>
-                <button class="filter-btn" data-type="gelo">❄️ Gelo / Neve</button>
-                <button class="filter-btn" data-type="noite">🌑 Noite / Sombra</button>
-                <button class="filter-btn" data-type="mar">🌊 Mar / Água</button>
-                <button class="filter-btn" data-type="folha">🌿 Folha / Natureza</button>
+            <div class="filter-bar">
+                <button class="filter-btn active" data-type="all"><i class="fa-solid fa-dragon"></i> Todos</button>
+                <button class="filter-btn" data-type="fogo"><i class="fa-solid fa-fire-flame-curved"></i> Fogo & Sangue</button>
+                <button class="filter-btn" data-type="ossos"><i class="fa-solid fa-bone"></i> Necromancia</button>
+                <button class="filter-btn" data-type="gelo"><i class="fa-solid fa-snowflake"></i> Gelo Profano</button>
+                <button class="filter-btn" data-type="noite"><i class="fa-solid fa-moon"></i> Abismo & Sombra</button>
+                <button class="filter-btn" data-type="mar"><i class="fa-solid fa-water"></i> Mar Sanguinolento</button>
+                <button class="filter-btn" data-type="folha"><i class="fa-solid fa-leaf"></i> Veneno & Flora</button>
             </div>
         </section>
 
-        <section class="stats-bar">
-            <p>Registros ativos no Bestiário: <strong id="dragon-count">0</strong> / 200</p>
-        </section>
+        <div class="grim-counter">
+            <span>📜 Bestas Ancestrais Catalogadas: <strong id="dragon-count">0</strong> / 200</span>
+        </div>
 
         <section id="dragons-grid" class="dragons-grid">
-            <!-- Os 200 Cards serão gerados aqui via JS -->
+            <!-- Cards gerados via JS sem repetição de imagens -->
         </section>
 
     </main>
 
-    <!-- Modal de História Completa -->
-    <div id="dragon-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div id="modal-body"></div>
+    <!-- MODAL DE CRÔNICAS E LORE EXAUSTIVA -->
+    <div id="dragon-modal" class="gothic-modal">
+        <div class="modal-box">
+            <span class="close-btn">&times;</span>
+            <div id="modal-content-body"></div>
         </div>
     </div>
 
-    <footer class="main-footer">
-        <p>🔥 Forjado com Magia & Código Avançado | 100% Compatível com GitHub Pages 🔥</p>
+    <footer class="gothic-footer">
+        <p>🩸 Forjado nas Trevas, Feitiçaria Arcana & Código Obscuro | Grimório dos Dragões © 2026 🩸</p>
     </footer>
 
     <script src="dragonsData.js"></script>

@@ -5,18 +5,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const dragonCount = document.getElementById("dragon-count");
 
     const modal = document.getElementById("dragon-modal");
-    const modalBody = document.getElementById("modal-body");
-    const closeModal = document.querySelector(".close-modal");
+    const modalBody = document.getElementById("modal-content-body");
+    const closeBtn = document.querySelector(".close-btn");
 
-    let currentType = "all";
+    let activeFilter = "all";
 
-    // Renderização dos Cards com Bordas Temáticas
-    function renderDragons(list) {
+    const iconMap = {
+        fogo: "fa-fire-flame-curved",
+        ossos: "fa-bone",
+        gelo: "fa-snowflake",
+        noite: "fa-moon",
+        mar: "fa-water",
+        folha: "fa-leaf"
+    };
+
+    function renderCards(list) {
         grid.innerHTML = "";
         dragonCount.textContent = list.length;
 
         if (list.length === 0) {
-            grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); font-size: 1.3rem;">Nenhum dragão encontrado com esses critérios...</p>`;
+            grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--blood-bright); font-size: 1.5rem; padding: 40px;">Nenhum dragão encontrado nas sombras do compêndio...</p>`;
             return;
         }
 
@@ -24,37 +32,42 @@ document.addEventListener("DOMContentLoaded", () => {
             const card = document.createElement("div");
             card.className = `dragon-card theme-${dragon.tipo}`;
 
+            const icon = iconMap[dragon.tipo] || "fa-dragon";
+
             card.innerHTML = `
-                <div class="card-img-container">
+                <div class="card-img-wrapper">
                     <img src="${dragon.imagem}" alt="${dragon.nome}" loading="lazy">
+                    <div class="badge-elem">
+                        <i class="fa-solid ${icon}"></i>
+                    </div>
                 </div>
-                <div class="card-info">
-                    <h3 class="dragon-name">${dragon.nome}</h3>
-                    <span class="dragon-tag tag-${dragon.tipo}">${dragon.tribo}</span>
-                    <p class="dragon-snippet">${dragon.origem.substring(0, 100)}...</p>
+                <div class="card-body">
+                    <h2 class="dragon-title">${dragon.nome}</h2>
+                    <p class="dragon-sub">${dragon.tribo}</p>
+                    <p class="dragon-desc-preview">${dragon.origem.substring(0, 110)}...</p>
                 </div>
             `;
 
-            card.addEventListener("click", () => openModal(dragon));
+            card.addEventListener("click", () => showDragonLore(dragon));
             grid.appendChild(card);
         });
     }
 
-    // Filtragem
     function filterData() {
         const query = searchInput.value.toLowerCase();
 
-        const filtered = dragonsData.filter(dragon => {
-            const matchesSearch = dragon.nome.toLowerCase().includes(query) ||
-                                  dragon.tribo.toLowerCase().includes(query) ||
-                                  dragon.habilidades.toLowerCase().includes(query);
+        const filtered = dragonsData.filter(d => {
+            const matchesText = d.nome.toLowerCase().includes(query) ||
+                                d.tribo.toLowerCase().includes(query) ||
+                                d.habilidades.toLowerCase().includes(query) ||
+                                d.origem.toLowerCase().includes(query);
 
-            const matchesType = currentType === "all" || dragon.tipo === currentType;
+            const matchesFilter = activeFilter === "all" || d.tipo === activeFilter;
 
-            return matchesSearch && matchesType;
+            return matchesText && matchesFilter;
         });
 
-        renderDragons(filtered);
+        renderCards(filtered);
     }
 
     searchInput.addEventListener("input", filterData);
@@ -63,81 +76,148 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.addEventListener("click", () => {
             filterBtns.forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
-            currentType = btn.getAttribute("data-type");
+            activeFilter = btn.getAttribute("data-type");
             filterData();
         });
     });
 
-    // Modal com Origem, Meio e Fim
-    function openModal(dragon) {
+    function showDragonLore(d) {
         modalBody.innerHTML = `
-            <h2 style="color: var(--gold); font-size: 2rem;">${dragon.nome}</h2>
-            <p style="color: #ff6b6b; font-weight: bold; margin-bottom: 15px;">${dragon.tribo} — Classe ${dragon.tipo.toUpperCase()}</p>
+            <h1 style="font-family: 'UnifrakturMaguntia', cursive; color: var(--blood-bright); font-size: 3rem; margin-bottom: 5px;">${d.nome}</h1>
+            <p style="color: var(--gold-ancient); font-size: 1.2rem; font-weight: bold; margin-bottom: 20px;">${d.tribo} — [${d.tipo.toUpperCase()}]</p>
             
-            <img src="${dragon.imagem}" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 10px; margin-bottom: 20px;">
-            
-            <div class="history-section">
-                <h4 style="color: var(--gold);">📜 Origem</h4>
-                <p>${dragon.origem}</p>
+            <img src="${d.imagem}" style="width: 100%; max-height: 450px; object-fit: cover; border-radius: 6px; border: 2px solid var(--blood-bright); box-shadow: 0 0 40px #660000; margin-bottom: 25px;">
+
+            <div class="lore-section">
+                <h3>📜 Origem Completa & Eclosão</h3>
+                <p>${d.origem}</p>
             </div>
 
-            <div class="history-section">
-                <h4 style="color: var(--gold);">⚔️ Trajetória (Meio)</h4>
-                <p>${dragon.meio}</p>
+            <div class="lore-section">
+                <h3>⚔️ Crônica de Vida & Trajetória Detalhada</h3>
+                <p>${d.trajetoria}</p>
             </div>
 
-            <div class="history-section">
-                <h4 style="color: var(--gold);">👑 Destino / Conclusão (Fim)</h4>
-                <p>${dragon.fim}</p>
+            <div class="lore-section">
+                <h3>🛡️ Grandes Batalhas & Campanhas</h3>
+                <p>${d.batalhas}</p>
             </div>
 
-            <br>
-            <p><strong>✨ Habilidades e Poderes:</strong> ${dragon.habilidades}</p>
+            <div class="lore-section">
+                <h3>👑 O Destino Final & Conclusão da Lenda</h3>
+                <p>${d.fim}</p>
+            </div>
+
+            <div class="lore-section" style="border-left-color: var(--gold-ancient);">
+                <h3>✨ Habilidades, Poderes & Maldições Arcanas</h3>
+                <p>${d.habilidades}</p>
+            </div>
         `;
         modal.style.display = "flex";
     }
 
-    closeModal.addEventListener("click", () => { modal.style.display = "none"; });
+    closeBtn.addEventListener("click", () => { modal.style.display = "none"; });
     window.addEventListener("click", (e) => { if (e.target === modal) modal.style.display = "none"; });
 
-    // Animação de Partículas
-    function initCanvas() {
-        const canvas = document.getElementById("fire-particles");
-        const ctx = canvas.getContext("2d");
+    // MOTOR EXTREMO DE SANGUE ESCORRENDO E INTERAÇÃO COM MOUSE
+    function initBloodEngine() {
+        const bloodCanvas = document.getElementById("blood-canvas");
+        const fireCanvas = document.getElementById("fire-canvas");
+
+        const ctxBlood = bloodCanvas.getContext("2d");
+        const ctxFire = fireCanvas.getContext("2d");
 
         function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            bloodCanvas.width = fireCanvas.width = window.innerWidth;
+            bloodCanvas.height = fireCanvas.height = window.innerHeight;
         }
         resize();
         window.addEventListener("resize", resize);
 
-        const particles = Array.from({ length: 50 }, () => ({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            size: Math.random() * 2.5 + 1,
-            speedY: Math.random() * 1 + 0.3,
-            opacity: Math.random()
+        const bloodDrops = Array.from({ length: 75 }, () => ({
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * -window.innerHeight,
+            length: Math.random() * 90 + 25,
+            speed: Math.random() * 5 + 2,
+            width: Math.random() * 3 + 1
         }));
 
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.y -= p.speedY;
-                if (p.y < 0) {
-                    p.y = canvas.height;
-                    p.x = Math.random() * canvas.width;
+        const sparks = Array.from({ length: 80 }, () => ({
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+            size: Math.random() * 3.5 + 1,
+            speedY: Math.random() * 2 + 0.5,
+            speedX: (Math.random() - 0.5) * 1.2,
+            opacity: Math.random() * 0.8 + 0.2
+        }));
+
+        let mouseTrail = [];
+        window.addEventListener("mousemove", (e) => {
+            for (let i = 0; i < 2; i++) {
+                mouseTrail.push({
+                    x: e.clientX,
+                    y: e.clientY,
+                    vx: (Math.random() - 0.5) * 3,
+                    vy: Math.random() * 3 + 1,
+                    size: Math.random() * 4 + 2,
+                    alpha: 1
+                });
+            }
+        });
+
+        function animate() {
+            ctxBlood.clearRect(0, 0, bloodCanvas.width, bloodCanvas.height);
+            ctxBlood.fillStyle = "#ff0033";
+            ctxBlood.shadowBlur = 10;
+            ctxBlood.shadowColor = "#660000";
+
+            bloodDrops.forEach(d => {
+                ctxBlood.fillRect(d.x, d.y, d.width, d.length);
+                d.y += d.speed;
+
+                if (d.y > bloodCanvas.height) {
+                    d.y = Math.random() * -100;
+                    d.x = Math.random() * bloodCanvas.width;
                 }
-                ctx.fillStyle = `rgba(255, 120, 0, ${p.opacity})`;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fill();
             });
-            requestAnimationFrame(draw);
+
+            mouseTrail.forEach((p, index) => {
+                ctxBlood.fillStyle = `rgba(255, 0, 51, ${p.alpha})`;
+                ctxBlood.beginPath();
+                ctxBlood.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctxBlood.fill();
+
+                p.x += p.vx;
+                p.y += p.vy;
+                p.alpha -= 0.02;
+
+                if (p.alpha <= 0) mouseTrail.splice(index, 1);
+            });
+
+            ctxFire.clearRect(0, 0, fireCanvas.width, fireCanvas.height);
+            sparks.forEach(s => {
+                s.y -= s.speedY;
+                s.x += s.speedX;
+
+                if (s.y < 0) {
+                    s.y = fireCanvas.height;
+                    s.x = Math.random() * fireCanvas.width;
+                }
+
+                ctxFire.fillStyle = `rgba(255, 69, 0, ${s.opacity})`;
+                ctxFire.shadowBlur = 8;
+                ctxFire.shadowColor = "#ff3300";
+                ctxFire.beginPath();
+                ctxFire.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                ctxFire.fill();
+            });
+
+            requestAnimationFrame(animate);
         }
-        draw();
+
+        animate();
     }
 
-    renderDragons(dragonsData);
-    initCanvas();
+    renderCards(dragonsData);
+    initBloodEngine();
 });

@@ -1,95 +1,146 @@
 :root {
-    --bg-dark: #050508;
-    --card-bg: #0d0d12;
-    --gold: #ffb700;
-    --text-main: #e8e8e8;
-    --text-muted: #9a9a9a;
+    --bg-black: #020202;
+    --card-bg: rgba(8, 3, 5, 0.95);
+    --blood-red: #660000;
+    --blood-bright: #ff0033;
+    --gold-ancient: #c5a059;
+    --text-pale: #d1d1d1;
+    --border-dark: #220005;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Cinzel', 'Segoe UI', serif;
 }
 
 body {
-    background-color: var(--bg-dark);
-    color: var(--text-main);
+    background-color: var(--bg-black);
+    color: var(--text-pale);
+    font-family: 'MedievalSharp', serif;
     min-height: 100vh;
     overflow-x: hidden;
 }
 
-#fire-particles {
+/* CANVASES DE ANIMAÇÃO EM CAMADAS (SANGUE & FAÍSCAS) */
+#blood-canvas, #fire-canvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 0;
 }
 
-.container {
-    max-width: 1400px;
+#blood-canvas { z-index: 1; }
+#fire-canvas { z-index: 2; }
+
+.vignette-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 30%, rgba(0, 0, 0, 0.98) 95%);
+    pointer-events: none;
+    z-index: 3;
+}
+
+.ancient-texture {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/black-paper.png');
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.main-container {
+    max-width: 1600px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 40px 20px;
     position: relative;
-    z-index: 1;
+    z-index: 4;
 }
 
-/* Header */
-.main-header {
+/* HEADER MEDIEVAL OBSCURO */
+.gothic-header {
+    position: relative;
+    z-index: 4;
     text-align: center;
-    padding: 70px 20px;
-    background: radial-gradient(circle, #2a0000 0%, var(--bg-dark) 90%);
-    border-bottom: 3px solid #8b0000;
+    padding: 100px 20px 80px 20px;
+    background: linear-gradient(180deg, rgba(80, 0, 0, 0.5) 0%, rgba(2, 2, 2, 1) 100%);
+    border-bottom: 3px solid var(--blood-bright);
+    box-shadow: 0 10px 50px rgba(255, 0, 51, 0.2);
 }
 
-.glowing-title {
-    font-size: 3rem;
-    color: var(--gold);
-    text-shadow: 0 0 15px #ff4500, 0 0 30px #8b0000;
+.blood-title {
+    font-family: 'UnifrakturMaguntia', cursive;
+    font-size: 4.5rem;
+    color: var(--blood-bright);
+    text-shadow: 0 0 20px var(--blood-red), 0 0 40px #000;
+    letter-spacing: 2px;
+    animation: bloodGlow 4s infinite alternate;
 }
 
-.subtitle {
-    color: var(--text-muted);
-    font-size: 1.2rem;
-    margin-top: 10px;
+@keyframes bloodGlow {
+    0% { text-shadow: 0 0 10px #660000, 0 0 20px #000; }
+    100% { text-shadow: 0 0 35px #ff0033, 0 0 60px #8b0000, 0 0 80px #ff0000; }
 }
 
-/* Controls */
-.controls-section {
-    margin: 30px 0;
+.gothic-subtitle {
+    color: var(--gold-ancient);
+    font-size: 1.3rem;
+    margin-top: 15px;
+    letter-spacing: 2px;
+}
+
+/* BARRA DE PESQUISA E FILTROS */
+.control-panel {
+    margin: 40px 0;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
     align-items: center;
 }
 
-.search-box {
+.search-bar {
+    position: relative;
     width: 100%;
-    max-width: 650px;
+    max-width: 850px;
 }
 
-.search-box input {
+.search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--blood-bright);
+    font-size: 1.5rem;
+}
+
+.search-bar input {
     width: 100%;
-    padding: 16px 22px;
-    background: #12121c;
-    border: 2px solid #8b0000;
-    border-radius: 10px;
+    padding: 20px 20px 20px 60px;
+    background: rgba(10, 2, 5, 0.95);
+    border: 2px solid var(--blood-red);
+    border-radius: 4px;
     color: #fff;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     outline: none;
-    transition: 0.3s;
+    transition: all 0.4s;
+    box-shadow: inset 0 0 20px #000;
 }
 
-.search-box input:focus {
-    box-shadow: 0 0 20px #ff4500;
-    border-color: var(--gold);
+.search-bar input:focus {
+    border-color: var(--blood-bright);
+    box-shadow: 0 0 30px var(--blood-bright), inset 0 0 20px var(--blood-red);
 }
 
-.filter-group {
+.filter-bar {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
@@ -97,220 +148,208 @@ body {
 }
 
 .filter-btn {
-    background: #14141e;
-    color: var(--text-main);
-    border: 1px solid #333;
-    padding: 10px 18px;
-    border-radius: 25px;
+    background: rgba(15, 5, 8, 0.9);
+    color: var(--text-pale);
+    border: 1px solid var(--border-dark);
+    padding: 14px 22px;
+    border-radius: 4px;
     cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s ease;
+    font-size: 1rem;
+    transition: all 0.3s;
+    font-family: 'MedievalSharp', serif;
 }
 
 .filter-btn:hover, .filter-btn.active {
-    background: #8b0000;
+    background: var(--blood-red);
     color: #fff;
-    border-color: var(--gold);
-    box-shadow: 0 0 15px #ff4500;
+    border-color: var(--gold-ancient);
+    box-shadow: 0 0 20px var(--blood-bright);
+    transform: translateY(-3px);
 }
 
-.stats-bar {
+.grim-counter {
     text-align: right;
-    margin-bottom: 20px;
-    color: var(--text-muted);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    color: var(--gold-ancient);
+    margin-bottom: 30px;
 }
 
-/* Grid */
+/* GRID DE DRAGÕES & CARDS MEDIEVAIS */
 .dragons-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 40px;
 }
 
-/* CARDS E BORDAS TEMÁTICAS */
 .dragon-card {
     background: var(--card-bg);
-    border-radius: 15px;
+    border-radius: 8px;
     overflow: hidden;
     position: relative;
     cursor: pointer;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
     display: flex;
     flex-direction: column;
+    border: 2px solid var(--border-dark);
 }
 
 .dragon-card:hover {
-    transform: translateY(-10px) scale(1.02);
+    transform: translateY(-12px) scale(1.02);
 }
 
-/* TEMAS DE BORDA DINÂMICOS */
+/* TEMAS BORDADOS POR ELEMENTO */
+.theme-fogo { border-color: #991100; box-shadow: 0 0 15px rgba(153, 17, 0, 0.3); }
+.theme-fogo:hover { box-shadow: 0 0 35px #ff3300; }
 
-/* 1. Tema Fogo (Labaredas Animadas) */
-.dragon-card.theme-fogo {
-    border: 3px solid #ff4500;
-    box-shadow: 0 0 15px rgba(255, 69, 0, 0.4);
-    animation: firePulse 2s infinite alternate;
-}
+.theme-ossos { border-color: #888888; box-shadow: 0 0 15px rgba(136, 136, 136, 0.3); }
+.theme-ossos:hover { box-shadow: 0 0 35px #ffffff; }
 
-@keyframes firePulse {
-    0% { box-shadow: 0 0 10px #ff4500, inset 0 0 10px #ff4500; }
-    100% { box-shadow: 0 0 25px #ff0000, 0 0 10px #ffb700, inset 0 0 15px #ff4500; }
-}
+.theme-gelo { border-color: #0088cc; box-shadow: 0 0 15px rgba(0, 136, 204, 0.3); }
+.theme-gelo:hover { box-shadow: 0 0 35px #00e5ff; }
 
-/* 2. Tema Ossos / Necro (Borda Gótica e Serrilhada) */
-.dragon-card.theme-ossos {
-    border: 3px dashed #d1d1d1;
-    background: linear-gradient(145deg, #0d0d12, #18181f);
-    box-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
-    outline: 2px solid #444;
-}
+.theme-noite { border-color: #660099; box-shadow: 0 0 15px rgba(102, 0, 153, 0.3); }
+.theme-noite:hover { box-shadow: 0 0 35px #b026ff; }
 
-.dragon-card.theme-ossos:hover {
-    box-shadow: 0 0 25px #ffffff, 0 0 10px #888888;
-    border-color: #ffffff;
-}
+.theme-mar { border-color: #009966; box-shadow: 0 0 15px rgba(0, 153, 102, 0.3); }
+.theme-mar:hover { box-shadow: 0 0 35px #00ffaa; }
 
-/* 3. Tema Gelo (Cristais Congelados) */
-.dragon-card.theme-gelo {
-    border: 3px solid #00dfff;
-    box-shadow: 0 0 15px rgba(0, 223, 255, 0.4);
-    animation: iceGlow 3s infinite alternate;
-}
+.theme-folha { border-color: #228b22; box-shadow: 0 0 15px rgba(34, 139, 34, 0.3); }
+.theme-folha:hover { box-shadow: 0 0 35px #39ff14; }
 
-@keyframes iceGlow {
-    0% { box-shadow: 0 0 10px #00dfff; }
-    100% { box-shadow: 0 0 25px #00dfff, 0 0 35px #ffffff; }
-}
-
-/* 4. Tema Noite / Sombra (Aura Abissal) */
-.dragon-card.theme-noite {
-    border: 3px solid #8a2be2;
-    box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
-}
-
-.dragon-card.theme-noite:hover {
-    box-shadow: 0 0 30px #8a2be2, 0 0 15px #4b0082;
-}
-
-/* 5. Tema Mar (Ondas e Bioluminescência) */
-.dragon-card.theme-mar {
-    border: 3px solid #00ffaa;
-    box-shadow: 0 0 15px rgba(0, 255, 170, 0.4);
-}
-
-/* 6. Tema Folha (Natureza) */
-.dragon-card.theme-folha {
-    border: 3px solid #32cd32;
-    box-shadow: 0 0 15px rgba(50, 205, 50, 0.4);
-}
-
-/* Mídia e Conteúdo do Card */
-.card-img-container {
+.card-img-wrapper {
     width: 100%;
-    height: 230px;
-    overflow: hidden;
+    height: 280px;
     position: relative;
+    overflow: hidden;
 }
 
-.card-img-container img {
+.card-img-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    filter: brightness(0.8) contrast(1.2);
+    transition: transform 0.6s ease, filter 0.6s ease;
 }
 
-.dragon-card:hover .card-img-container img {
-    transform: scale(1.15) rotate(1deg);
+.dragon-card:hover .card-img-wrapper img {
+    transform: scale(1.15);
+    filter: brightness(1.05) contrast(1.3);
 }
 
-.card-info {
-    padding: 20px;
+.badge-elem {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid var(--gold-ancient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: var(--gold-ancient);
+}
+
+.card-body {
+    padding: 25px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
 }
 
-.dragon-name {
+.dragon-title {
+    font-family: 'Cinzel Decorative', serif;
     font-size: 1.5rem;
-    color: var(--gold);
-    margin-bottom: 6px;
+    color: var(--gold-ancient);
+    margin-bottom: 8px;
 }
 
-.dragon-tag {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    margin-bottom: 12px;
+.dragon-sub {
+    font-size: 0.9rem;
+    color: var(--blood-bright);
+    margin-bottom: 15px;
     text-transform: uppercase;
-    width: fit-content;
+    letter-spacing: 1px;
 }
 
-.tag-fogo { background: #ff4500; color: #fff; }
-.tag-ossos { background: #444444; color: #fff; border: 1px solid #aaa; }
-.tag-gelo { background: #00dfff; color: #000; }
-.tag-noite { background: #8a2be2; color: #fff; }
-.tag-mar { background: #00ffaa; color: #000; }
-.tag-folha { background: #32cd32; color: #000; }
-
-.dragon-snippet {
+.dragon-desc-preview {
     font-size: 0.95rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-    flex-grow: 1;
+    color: #a0a0a0;
+    line-height: 1.6;
 }
 
-/* Modal Detalhado */
-.modal {
+/* MODAL DE HISTÓRIA EXTENSA */
+.gothic-modal {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 1000;
+    background: rgba(0, 0, 0, 0.96);
+    z-index: 100;
     justify-content: center;
     align-items: center;
     padding: 20px;
 }
 
-.modal-content {
-    background: #111118;
-    border: 2px solid var(--gold);
-    border-radius: 15px;
-    max-width: 800px;
+.modal-box {
+    background: #050103;
+    border: 2px solid var(--blood-bright);
+    border-radius: 8px;
+    max-width: 950px;
     width: 100%;
-    padding: 35px;
-    position: relative;
-    box-shadow: 0 0 30px rgba(255, 183, 0, 0.4);
-    max-height: 85vh;
+    max-height: 90vh;
     overflow-y: auto;
+    padding: 40px;
+    position: relative;
+    box-shadow: 0 0 60px rgba(255, 0, 51, 0.4);
 }
 
-.close-modal {
+.close-btn {
     position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 2.5rem;
-    color: #fff;
+    top: 20px;
+    right: 30px;
+    font-size: 3rem;
+    color: var(--blood-bright);
     cursor: pointer;
+    transition: 0.3s;
 }
 
-.history-section {
-    margin-top: 15px;
-    padding: 12px;
-    background: #181824;
-    border-left: 4px solid var(--gold);
+.close-btn:hover {
+    color: var(--gold-ancient);
+    transform: scale(1.2);
+}
+
+.lore-section {
+    margin-top: 25px;
+    padding: 20px;
+    background: rgba(15, 3, 8, 0.8);
+    border-left: 4px solid var(--blood-bright);
     border-radius: 4px;
 }
 
-.main-footer {
+.lore-section h3 {
+    color: var(--gold-ancient);
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.lore-section p {
+    line-height: 1.8;
+    font-size: 1.05rem;
+    color: #d1d1d1;
+}
+
+.gothic-footer {
     text-align: center;
-    padding: 35px;
-    margin-top: 60px;
-    border-top: 2px solid #222;
-    color: var(--text-muted);
+    padding: 60px 20px;
+    margin-top: 80px;
+    border-top: 2px solid var(--blood-red);
+    background: #010101;
+    color: var(--gold-ancient);
+    position: relative;
+    z-index: 4;
 }
