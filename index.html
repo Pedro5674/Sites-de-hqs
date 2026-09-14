@@ -3,32 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enciclopédia Dracônica - Bestiário Supremo</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/themes.css">
-    <link rel="stylesheet" href="assets/css/animations.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=MedievalSharp&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Santuário e Bestiário dos 200 Dragões</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body data-theme="default">
+<body>
 
-    <!-- Canvas para Animações Dinâmicas de Fundo (Labaredas, Raios, Partículas) -->
-    <canvas id="bg-canvas"></canvas>
+    <canvas id="fire-particles"></canvas>
 
-    <!-- Overlay de Gradiente do Tema -->
-    <div id="theme-overlay"></div>
+    <header class="main-header">
+        <div class="header-overlay">
+            <h1 class="glowing-title">🐉 SANTUÁRIO DOS 200 DRAGÕES 🐉</h1>
+            <p class="subtitle">O Tomo Supremo de Pyrrhia, Pantala e Lendas Mitológicas</p>
+        </div>
+    </header>
 
-    <!-- Aplicação Principal -->
-    <div id="app">
-        <header id="main-header"></header>
-        <main id="content-area"></main>
-        <footer id="main-footer">
-            <p>&copy; 2026 Enciclopédia Dracônica. Todos os direitos reservados aos Senhores dos Dragões.</p>
-        </footer>
+    <main class="container">
+        
+        <section class="controls-section">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="🔍 Buscar por nome, elemento, origem ou habilidade...">
+            </div>
+
+            <div class="filter-group">
+                <button class="filter-btn active" data-type="all">Todos os Dragões</button>
+                <button class="filter-btn" data-type="fogo">🔥 Fogo / Céu</button>
+                <button class="filter-btn" data-type="ossos">💀 Ossos / Necro</button>
+                <button class="filter-btn" data-type="gelo">❄️ Gelo / Neve</button>
+                <button class="filter-btn" data-type="noite">🌑 Noite / Sombra</button>
+                <button class="filter-btn" data-type="mar">🌊 Mar / Água</button>
+                <button class="filter-btn" data-type="folha">🌿 Folha / Natureza</button>
+            </div>
+        </section>
+
+        <section class="stats-bar">
+            <p>Registros ativos no Bestiário: <strong id="dragon-count">0</strong> / 200</p>
+        </section>
+
+        <section id="dragons-grid" class="dragons-grid">
+            <!-- Os 200 Cards serão gerados aqui via JS -->
+        </section>
+
+    </main>
+
+    <!-- Modal de História Completa -->
+    <div id="dragon-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-body"></div>
+        </div>
     </div>
 
-    <!-- Scripts da Aplicação via ES Modules -->
-    <script type="module" src="assets/js/app.js"></script>
+    <footer class="main-footer">
+        <p>🔥 Forjado com Magia & Código Avançado | 100% Compatível com GitHub Pages 🔥</p>
+    </footer>
+
+    <script src="dragonsData.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
